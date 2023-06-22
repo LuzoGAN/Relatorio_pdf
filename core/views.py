@@ -1,8 +1,16 @@
-from django.shortcuts import render
 import io
 from django.http import FileResponse
 from django.views.generic import View
-# Create your views here.
+
+from reportlab.pdfgen import canvas
+
+# #####
+
+from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+
+
 
 class IndexView(View):
 
@@ -23,4 +31,4 @@ class IndexView(View):
         # Por fim, retornamos o buffer para o inicio do arquivo
         buffer.seek(0)
 
-        return FileResponse(buffer, as_attachement=True, filename='relatorio1.pdf')
+        return FileResponse(buffer, filename='relatorio1.pdf')
